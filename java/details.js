@@ -13,11 +13,15 @@ console.log(urlConvertidoString)
  let contenedorDeDetails = document.getElementById("carta-detallada")
 
 
- let cartas = data.events
+ let cartas;
 
 
- let cartasEncontradas = cartas.find(card => card._id == valorDeNuestroID)
- console.log(cartasEncontradas)
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+.then(datos => datos.json())
+.then(dataApi=> {
+    cartas = dataApi.events
+    maquetarCard( cartas.find(cartas => cartas._id == valorDeNuestroID))
+})
 
 
  function maquetarCard (card){
@@ -37,4 +41,4 @@ console.log(urlConvertidoString)
 contenedorDeDetails.appendChild(div)
 
  }
- maquetarCard(cartasEncontradas)
+ 
